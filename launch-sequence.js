@@ -1,3 +1,4 @@
+
 // First, register the service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
@@ -30,8 +31,6 @@ async function submitCode() {
     console.error(`Error: ${error.message}`);
   }
 }
-
-
 
 // Wait for service worker to be ready before making requests
 navigator.serviceWorker.ready
