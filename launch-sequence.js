@@ -13,25 +13,33 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-
-// async function so that we can use the await keyword
 async function submitCode() {
   try {
-    let response = await fetch("/api/logs", {
+    let response = await fetch("/api/codes", {
       headers: {
         Accept: "application/json",
       },
+      body: JSON.stringify({
+        enter: "ROVER",
+      }),
+      method: "POST"
     });
 
     console.log(response);
-    const logs = await response.json();
-    console.log(logs);
+    const data = await response.json();
+    
+    console.log(data);
+    const imgPlaceholder = document.getElementById("launch");
+    
+    if (!imgPlaceholder) {
+      console.log("No placeholder found");
+    }  
+    imgPlaceholder.src= data.img;
 
   } catch (error) {
     console.error(`Error: ${error.message}`);
   }
 }
-
 // Wait for service worker to be ready before making requests
 navigator.serviceWorker.ready
   .then(() => {
